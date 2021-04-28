@@ -1,0 +1,111 @@
+#Welcome to the ThemisBending config file!
+#This plugin is licensed under the MIT license. (https://choosealicense.com/licenses/mit/)
+#List of placeholders that don't require PlaceholderAPI:
+#[SERVER_TPS] The current TPS (Ticks per second) of the server
+#[PLAYER_NAME] The name of the player.
+#[PLAYER_PING] The ping of the player.
+#[TOTAL_VIOLATION_SCORE] The total violations of the player.
+#[VERTICAL_MOVEMENT_SCORE] The score of the player for the check-type "vertical_movement"
+#[HORIZONTAL_MOVEMENT_SCORE] The score of the player for the-check type "horizontal_movement"
+#[PACKET_SPOOF_SCORE] The score of the player for the check-type "packet_spoof"
+#[ILLEGAL_PACKET_SCORES] The score of the player for the check-type "illegal_packets"
+#[TICKRATE_SCORE] The score of the player for the check-type "tickrate"
+#Every other placeholder requires PlaceholderAPI (and the corresponding extension)
+#If you have any other questions, feel free to join the Themis discord server (https://discord.gg/2tzKFDJ2wW)
+
+
+#This message gets sent to the command executor when they don't have the needed permissions. You can use placeholders.
+no_permission_message: "§cYou do not have the permission to do this!"
+#The plugins to "add support" for (All possible plugins are selected by default) (Some might not work flawless)
+side_plugins:
+  projectkorra:
+    enable: true
+    #The delay until a player can be bypassed (Measured in milliseconds)
+    join_bypass_delay: 1000.0
+    #The delay until the player isn't bypassed anymore after the ability ended (Measured in milliseconds)
+    bypass_remove_delay: 2000.0
+
+#The settings for the GUI (/tgui)
+gui:
+  #The minimum violation amount to show up in the GUI
+  violation_threshold: 1.0
+  #The message that gets sent when the GUI is empty/All online players have a total violation score below the violation_threshold
+  empty_gui_message: "§aIt seems like there is nobody to show!"
+
+  #The amount of rows to add to the GUI. Must be between 1 and 5 (The row with the buttons isn't counted)
+  row_amount: 1
+  #The filler used to block the fields between the "previous" and "next" button
+  filler:
+    item: LIGHT_GRAY_STAINED_GLASS_PANE
+    name: "§r" #This will make the name blank
+    lore:
+  #The title of the GUI
+  title: "§4Themis Violations"
+  #The Buttons for the previous and next page
+  buttons:
+    previous:
+      item: ARROW
+      name: "Previous page"
+      lore:
+        - "Go to the previous page."
+    next:
+      item: ARROW
+      name: "Next page"
+      lore:
+      - "Go to the next page."
+
+  #The items that represents the players in the GUI
+  player_item:
+
+    #The name of the player-head
+    name: "[PLAYER_NAME]"
+
+    #The Lore of each player-head (Each item is one line)
+    lore:
+      - "§cTotal violation score: §4[TOTAL_VIOLATION_SCORE]"
+      - "§cCurrent ping: §4[PLAYER_PING]ms"
+      - "§cServer TPS: §4[SERVER_TPS]"
+
+    #The commands to execute when clicking a playerhead
+    #All placeholders used here will be parsed for the owner of the head, not the person who clicked
+    commands:
+      #Commands that get executed on a left click
+      left_click:
+        #Commands to execute from the console
+        console:
+        #Commands to execute as the player who clicked
+        player:
+          - "themis info [PLAYER_NAME]"
+      #Commands that get executed on a shift+left click
+      shift_left_click:
+        console:
+        player:
+      #Commands that get executed on a right click
+      right_click:
+        console:
+        player:
+          - "tp [PLAYER_NAME]"
+      #Commands that get executed on a shift+right click
+      shift_right_click:
+        console:
+        player:
+      #Commands that get executed on a middle click
+      middle_click:
+        #Below are two commands that contain quotation marks, these must be escaped using a backslash.
+        console:
+          #These commands get executed as the console, because the player might not have the permissions to do that.
+          - "title [PLAYER_NAME] times 20 1200 40"
+          - "title [PLAYER_NAME] title {\"text\":\"Cheating detected!\",\"bold\":true,\"color\":\"dark_red\"}"
+          - "title [PLAYER_NAME] actionbar {\"text\":\"Please disable your cheats, otherwise an action will be taken!\",\"color\":\"red\"}"
+          - "title [PLAYER_NAME] subtitle {\"text\":\"Please disable your cheats\",\"color\":\"dark_purple\"}"
+        player:
+      #Commands that get executed when a player tries to drop this head
+      drop:
+        console:
+        player:
+      #Commands that get executed when a player tries to drop this head with Ctrl+Q
+      control_drop:
+        console:
+        player:
+    #If the GUI should be closed when a playerhead is clicked
+    close_on_click: true

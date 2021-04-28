@@ -1,5 +1,5 @@
 name: ThemisBending
-version: 0.1
+version: 0.0.1
 main: at.lenderschlender.themisbending.ThemisBending
 
 author: LenderSchlender
@@ -7,4 +7,41 @@ api-version: 1.16
 prefix: ThemisBending
 depend:
   - Themis
+  - ProtocolLib
+softdepend:
   - ProjectKorra
+  - PlaceholderAPI
+commands:
+  themisbending-reload:
+    description: Reloads the plugin
+    usage: /reload
+    aliases:
+      - tb-reload
+  tgui:
+    description: Open a GUI of all Players that got flagged
+    usage: /tgui
+    aliases:
+      - themisgui
+      - tg
+permissions:
+  themisbending.reload:
+    default: op
+    description: Reloads the plugin
+  themisbending.gui.open:
+    default: op
+    description: Allows a player to open the ThemisBending GUI
+  themisbending.gui.commands:
+    default: op
+    description: Allows a player to execute commands by clicking on playerheads in the ThemisBending GUI
+  themisbending.gui.*:
+    default: op
+    description: All permissions for the ThemisBending GUI
+    children:
+      themisbending.gui.open: true
+      themisbending.gui.commands: true
+  themisbending.*:
+    default: op
+    description: All ThemisBending permissions
+    children:
+      themisbending.gui.*: true
+      themisbending.reload: true
