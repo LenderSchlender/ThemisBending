@@ -21,8 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package at.lenderschlender.themisbending;
+package at.lenderschlender.themisbending.listener;
 
+import at.lenderschlender.themisbending.ThemisBending;
 import com.gmail.olexorus.themis.api.CheckType;
 import com.gmail.olexorus.themis.api.ViolationEvent;
 import com.projectkorra.projectkorra.event.AbilityEndEvent;
@@ -55,7 +56,8 @@ public class ProjectKorraListener implements Listener {
 
         if (bypassingPlayers.contains(player.getUniqueId())) {
             if (type.equals(CheckType.HORIZONTAL_MOVEMENT) ||
-                    type.equals(CheckType.VERTICAL_MOVEMENT)) {
+                    type.equals(CheckType.VERTICAL_MOVEMENT) ||
+                    type.equals(CheckType.ILLEGAL_PACKETS)) {
                 event.setCancelled(true);
             }
         }

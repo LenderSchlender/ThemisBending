@@ -27,6 +27,7 @@ package at.lenderschlender.themisbending;
 import at.lenderschlender.themisbending.commands.ReloadCmd;
 import at.lenderschlender.themisbending.commands.ThemisGuiCmd;
 import at.lenderschlender.themisbending.listener.PingListener;
+import at.lenderschlender.themisbending.listener.ProjectKorraListener;
 import at.lenderschlender.themisbending.util.LagUtils;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
